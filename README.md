@@ -10,7 +10,7 @@ A Weather app to know the next 5 days weather in a specific location
 
 ## Tech stack
 
-1. **React Latest Version with Hooks, one my first app with Hooks**
+1. **React Latest Version with Hooks, one of my first apps with Hooks**
    **they are good althought...its needs to get used to**
 2. **ES6**
 2. **Redux Thunk**
