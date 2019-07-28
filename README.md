@@ -10,7 +10,8 @@ A Weather app to know the next 5 days weather in a specific location
 
 ## Tech stack
 
-1. **React Latest Version with Hooks, one my first app with Hooks, they are good althought..its needs to get used to**
+1. **React Latest Version with Hooks, one my first app with Hooks, they are good althought
+   **..its needs to get used to**
 2. **ES6**
 2. **Redux Thunk**
 
@@ -28,8 +29,8 @@ A couple of bugs left to fix
 1. Related to UTC and midnight time. I know I should have handled this detail
 2. The other one, it is a bit hidden, try to find out I know you will
 
-## Just to comment, I would love to create another folder (for example "native") and start to
-## code a React Native app sharing same Redux used for the Web app
+**Just to comment, I would love to create another folder (for example "native") and start to
+code a React Native app sharing same Redux used for the Web app**
 
 Time is always a constraint :( 
     
