@@ -15,12 +15,9 @@ const Weather = (props) => {
 	const { arrWeather, reFetch, loading } = props;
 
 	const addDateWithoutTime = () => {
-		const lastDay = new Date(arrWeather[arrWeather.length-1].date);		
-		const thirdDay = new Date(lastDay.setDate(lastDay.getDate() - 2));
-		arrWeather.forEach((element) => {
+		arrWeather.forEach((element, index) => {
 			element.dateNotTime = element.date.split(' ')[0];
-			if (thirdDay.getTime() > new Date(element.date).getTime()
-				&& thirdDay.getDate() > new Date(element.date).getDate()) {
+			if (index < 24) {
 				element.show = true;
 				element.selected = false;
 			} else {
@@ -67,6 +64,12 @@ const Weather = (props) => {
 
 	const [daysWeather, setDaysWeather] = React.useState(fnExec());
 
+	const setValuesAndRender = () => {
+		setTrigger(!trigger);
+		setIsMoveCards(false);
+		setReloadCards(false);
+	}
+
 	const handleChange = event => {
 		setReloadCards(true);
 		let value = event.target.value;
@@ -78,9 +81,7 @@ const Weather = (props) => {
 	const moveCards = params => {
 		isFirstLoad = true;
 		filterParams = params;
-		setTrigger(!trigger);
-		setIsMoveCards(true);
-		setReloadCards(true);
+		setValuesAndRender();
 	}
 
 	const [trigger, setTrigger] = React.useState(false);
@@ -97,9 +98,7 @@ const Weather = (props) => {
 			return card.date === element.dateNotTime ? element.selected = true : null;
 		});
 		const arrSegments = Object.assign([], daysWeather);
-		setTrigger(!trigger);
-		setIsMoveCards(false);
-		setReloadCards(false);
+		setValuesAndRender();
 		setAllSegments(arrSegments);
 
 	}
