@@ -1,10 +1,7 @@
-import React, { Fragment, useState } from 'react';
-import FlagsInputCode from './FlagInputCountry';
-import useFormField from '../hooks/UseFormField';
+import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -29,13 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RadioType(props) {
 
-  const [value, setValue] = React.useState('Farenheit');
-
-  function handleChange(event) {
-    setValue(event.target.value);
-  }
-
-  const [responseCode, handleSubmit, onInputChange] = useFormField('');
+  const { handleChange, value } = props;
 
   const classes = useStyles();
 
@@ -44,8 +35,8 @@ export default function RadioType(props) {
     <Grid item xs={5} sm={3}>
       <div className={classes.paper}><FormControl component="fieldset">
         <RadioGroup
-          aria-label="gender"
-          name="gender2"
+          aria-label="celsius"
+          name="celsius"
           value={value}
           onChange={handleChange}
         >
@@ -54,7 +45,7 @@ export default function RadioType(props) {
             value="Celsius"
             control={<Radio  classes={{root: classes.radio, checked: classes.checked}} />}
             label="Celsius"
-            labelPlacement="start"
+            labelPlacement="end"
           />
         </RadioGroup>
       </FormControl>
@@ -64,8 +55,8 @@ export default function RadioType(props) {
       <div className={classes.paper}>
         <FormControl component="fieldset">
           <RadioGroup
-            aria-label="gender"
-            name="gender2"
+            aria-label="Farenheit"
+            name="farenheit"
             value={value}
             onChange={handleChange}
           >
@@ -73,7 +64,7 @@ export default function RadioType(props) {
               value="Farenheit"
               control={<Radio classes={{root: classes.radio, checked: classes.checked}} />}
               label="Farenheit"
-              labelPlacement="start"
+              labelPlacement="end"
             />
           </RadioGroup>
         </FormControl>

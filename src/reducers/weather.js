@@ -8,13 +8,12 @@ export default function recipeReducer(state = initialState, action) {
 
     switch (action.type) {
 
-      case 'GET_CELSIUS_DEGREES': {
-        
-        let weather = [];
+      case 'GET_CELSIUS_DEGREES': {        
+        let arrWeather = [];
 
         // Pick out the props I need
 
-        weather = action.data.list.map((item, index) => ({
+        arrWeather = action.data.list.map((item, index) => ({
           id: action.data.city.name + index,
           date: item.dt_txt,
           minTemp: item.main.temp_min,
@@ -24,16 +23,16 @@ export default function recipeReducer(state = initialState, action) {
 
         return {
           ...state,
-          weather,
+          arrWeather,
         };
       }
 
       case 'GET_FARENHEIT_DEGREES': {
-        let weather = [];
+        let arrWeather = [];
 
         // Pick out the props I need
 
-        weather = action.data.listmap((item, index) => ({
+        arrWeather = action.data.listmap((item, index) => ({
           id: action.data.city.name + index,
           date: item.dt_txt,
           minTemp: item.main.temp_min,
@@ -43,7 +42,7 @@ export default function recipeReducer(state = initialState, action) {
 
         return {
           ...state,
-          weather,
+          arrWeather,
         };
       }
 

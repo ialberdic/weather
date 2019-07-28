@@ -1,28 +1,16 @@
-import React, { Fragment, useRef } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { CardActionArea } from '@material-ui/core';
+let arrCards = [];
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 400,
-    '&:hover $focusHighlight': {
-      color: '#0000FF'
-    }
+    flexGrow: 1,
   },
   card: {
     maxWidth: 400,
@@ -47,15 +35,10 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     backgroundColor: red[500],
   },
-  root: {
-    flexGrow: 1,
-    //justifyContent: 'flex-end'
-  },
   paper: {
     flexDirection: "row",
     flexGrow: 1,
     marginLeft: '5%',
-    //padding: theme.spacing(1),
     color: theme.palette.text.secondary
   },
   space: {
@@ -69,196 +52,56 @@ const useStyles = makeStyles(theme => ({
   focusHighlight: {}
 }));
 
-export default function SelectedCard() {
+
+export default function SelectedCard(props) {
+
+  const { daysWeather, selectCard, reloadCards, isMoveCards } = props;
+
+  const result = Array.from(new Set(daysWeather.map(x => x.dateNotTime)))
+    .map(item => {
+      return {
+        date: item,
+        temp: daysWeather.find(t => t.dateNotTime === item).temp,
+        show: daysWeather.find(t => t.dateNotTime === item).show,
+        selected: daysWeather.find(t => t.dateNotTime === item).selected,
+      }
+    });
+
+  if (reloadCards || isMoveCards) { arrCards = Object.assign([], result) };
+
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
 
-  function handleExpandClick() {
-    setExpanded(!expanded);
+  function selectedCard(e) {
+    return selectCard(e);
   }
-
-  function toggleRaised(e) {
-
-  }
-  const containerRef = useRef(null);
 
   return (
-    <Fragment className={classes.root}>
-      <Grid item xs={3} sm={2}>
-        <div className={classes.paper}>
-          <Card ref={containerRef} className={classes.card} onClick={()=>toggleRaised()}>
-            <CardActionArea
-            classes={{
-              root: classes.actionArea,
-              focusHighlight: classes.focusHighlight
-            }}>
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Temp:
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Date:
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                ...
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-
-              <IconButton
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: expanded,
-                })}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="Show more"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                <Typography paragraph>Method:</Typography>
-                <Typography paragraph>
-                  Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                  minutes.
-          </Typography>
-                <Typography paragraph>
-                  Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                  heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                  browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                  and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                  pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-                  saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-                <Typography paragraph>
-                  Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                  without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                  medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                  again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                  minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-                <Typography>
-                  Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-              </CardContent>
-            </Collapse>
-            </CardActionArea>
-          </Card>
-        </div>
-      </Grid>
-      <Grid item xs={3} sm={2}>
-        <div className={classes.paper}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-                Temp:
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Date:
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                ...
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: expanded,
-                })}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="Show more"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                <Typography paragraph>Method:</Typography>
-                <Typography paragraph>
-                  Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                  minutes.
-          </Typography>
-                <Typography paragraph>
-                  Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                  heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                  browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                  and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                  pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-                  saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-                <Typography paragraph>
-                  Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                  without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                  medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                  again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                  minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-                <Typography>
-                  Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-              </CardContent>
-            </Collapse>
-          </Card>
-        </div>
-      </Grid>
-      <Grid item xs={3} sm={2}>
-        <div className={classes.paper}>
-          <Card className={classes.card}>
-            <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-                Temp:
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Date:
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                ...
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: expanded,
-                })}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="Show more"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                <Typography paragraph>Method:</Typography>
-                <Typography paragraph>
-                  Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-                  minutes.
-          </Typography>
-                <Typography paragraph>
-                  Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-                  heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-                  browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-                  and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-                  pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-                  saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-                <Typography paragraph>
-                  Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-                  without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-                  medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-                  again without stirring, until mussels have opened and rice is just tender, 5 to 7
-                  minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-                <Typography>
-                  Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-              </CardContent>
-            </Collapse>
-          </Card>
-        </div>
-      </Grid>
-    </Fragment>
+    arrCards.map((item, index) => {
+      if (item.show) {
+        return (
+          <Grid item xs={3} sm={2} key={index}>
+            <div className={classes.paper}>
+              <Card className={classes.card} onClick={function () { selectedCard(item) }}>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      Temp: {item.temp}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      Date: {item.date}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      ...
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </div>
+          </Grid>
+        );
+      } else {
+        return null;
+      }
+    })
   );
 }

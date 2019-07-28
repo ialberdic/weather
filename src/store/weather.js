@@ -1,5 +1,5 @@
 export default {
-  weather: [
+  arrWeather: [
     {
       temp: '0',
       date: 'dd MM YY',

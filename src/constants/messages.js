@@ -8,6 +8,6 @@ export const errorMessages = {
   timeout: 'Server Timed Out. Check your internet connection',
   invalidJson: 'Response returned is not valid JSON',
 
-  // Reddit posts
-  reddit404: 'Reddit post not found',
+  // Weather API
+  reddit404: 'Weather API down',
 };

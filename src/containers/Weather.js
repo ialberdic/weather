@@ -7,8 +7,7 @@ import { getWeather } from '../actions/getWeather';
 class WeatherContainer extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
-    weather: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    match: PropTypes.shape({ params: PropTypes.shape({}) }),
+    arrWeather: PropTypes.arrayOf(PropTypes.shape()).isRequired,
     fetchWeather: PropTypes.func.isRequired
   }
 
@@ -18,13 +17,13 @@ class WeatherContainer extends Component {
 
   state = {
     error: null,
-    loading: false
+    loading: false,
+    isFirstLoad: false
   }
 
   componentDidMount = () => this.fetchData();
 
   fetchData = (data) => {
-    console.log(data, " DTAAAAAAAAAAAAAA");
     const { fetchWeather } = this.props;
 
     this.setState({ loading: true });
@@ -40,26 +39,23 @@ class WeatherContainer extends Component {
   }
 
   render = () => {
-    const { Layout, weather, match } = this.props;
-    const { loading, error } = this.state;
-    const id = (match && match.params && match.params.id) ? match.params.id : null;
+    const { Layout, arrWeather } = this.props;
+    const { loading } = this.state;
     return (
       <Layout
-        //redditId={id}
-        //error={error}
         loading={loading}
-        weather={weather}
-        //reFetch={() => this.fetchData()} 
+        arrWeather={arrWeather}
+        reFetch={(param) => this.fetchData(param)}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  weather: state.weather.weather || {},
+  arrWeather: state.arrWeather.arrWeather || {},
 });
 
-const mapDispatchToProps = {
+const mapDispatchToProps = {  
   fetchWeather: getWeather,
 };
 

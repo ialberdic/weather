@@ -1,4 +1,4 @@
-import weather from './weather';
+import arrWeather from './weather';
 
 const rehydrated = (state = false, action) => {
   switch (action.type) {
@@ -11,5 +11,5 @@ const rehydrated = (state = false, action) => {
 
 export default {
   rehydrated,
-  weather,
+  arrWeather,
 };
