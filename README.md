@@ -20,7 +20,7 @@ A Weather app to know the next 5 days weather in a specific location
 1. Create constatnt for endpoints in .env file. Add Docker? ...Likely
 2. Add PM2 docker
 3. Some tests to get a good coverage
-4. To create a utils file to keep segments constants just to be cleaner, in the end we should trust in the details coming from the API call. However, detais change and it is not a good practice code like (< 24); which means 3 days, 8 segments by day.
+4. To create a utils file to keep segments constants just to be cleaner, in the end we should trust the details coming from the API call. However, details change and it is not a good practice code like (< 24); which means 3 days, 8 segments by day.
 
 4. **THE MOST IMPORTANT**
 
