@@ -1,0 +1,58 @@
+{
+  "name": "nomo-challenge",
+  "homepage": "https://www.ivanalberdi.io/",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.js",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "web-bundle": "react-scripts build",
+    "build:ed": "cp ./.env.ed .env && npm start"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.2.1",
+    "@material-ui/icons": "^4.2.1",
+    "enzyme-adapter-react-15": "^1.4.0",
+    "gh-pages": "^2.0.1",
+    "react": "^16.8.6",
+    "react-activity": "^1.2.2",
+    "react-charts": "^2.0.0-alpha.12",
+    "react-custom-flag-select": "^1.1.1",
+    "react-dom": "^16.8.6",
+    "react-inputs-validation": "^3.2.2",
+    "react-loader": "^2.4.5",
+    "react-redux": "^6.0.0",
+    "react-resizable": "^1.8.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "2.0.5",
+    "react-timer-mixin": "^0.13.4",
+    "react-use-promise": "^0.2.0",
+    "react-vega": "^6.1.0",
+    "react-vega-lite": "^6.1.0",
+    "reactstrap": "^7.1.0",
+    "recharts": "^1.6.2",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
+    "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "gh-pages": "^2.0.1",
+    "jest-expo": "^32.0.0",
+    "node-sass": "^4.11.0",
+    "react-scripts": "2.1.8"
+  }
+}
