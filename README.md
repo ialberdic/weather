@@ -1,6 +1,6 @@
 ## Weather app
 
-A Weather app to know 
+A Weather app to know the next 5 days weather in a specific location
 
 ## Run project locally without docker
 
