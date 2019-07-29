@@ -14,6 +14,22 @@ const Weather = (props) => {
 
 	const { arrWeather, reFetch, loading } = props;
 
+/* 	const init = () => {
+		if (!isFirstLoad) {
+			daysWeather.forEach((element, index) => {
+				element.dateNotTime = element.date.split(' ')[0];
+				if (index < 16) {
+					element.show = true;
+					element.selected = false;
+				} else {
+					element.show = false;
+					element.selected = false;
+				}
+			})
+		}
+	} */
+
+
 	const addDateWithoutTime = () => {
 		if (!isFirstLoad) {
 			arrWeather.forEach((element, index) => {
@@ -27,7 +43,7 @@ const Weather = (props) => {
 				}
 			});
 			return arrWeather;
-		} 		
+		}
 
 		return arrWeather;
 	};
@@ -41,7 +57,7 @@ const Weather = (props) => {
 	});
 
 	const fnExec = () => {
-		return !isFirstLoad ? addDateWithoutTime(): null;
+		return !isFirstLoad ? addDateWithoutTime() : null;
 	}
 
 	const [daysWeather, setDaysWeather] = React.useState(fnExec());
@@ -65,8 +81,8 @@ const Weather = (props) => {
 	const [trigger, setTrigger] = React.useState(false);
 
 	const cleanPrevioousSelected = () => {
-		daysWeather.map(element => { 
-			return element.selected = false; 
+		daysWeather.map(element => {
+			return element.selected = false;
 		});
 	}
 
@@ -106,7 +122,7 @@ const Weather = (props) => {
 
 	return (
 		<Fragment>
-			{!loading && daysWeather.length === 40 ? 
+			{!loading && daysWeather.length === 40 ?
 				<div className={classes.root}>
 					<Grid container spacing={3} className={classes.container} justify={"center"} display="flex" direction="row">
 						<RadioType
@@ -140,7 +156,7 @@ const Weather = (props) => {
 					</Grid>
 				</div >
 				: <Loader />
-		}
+			}
 		</Fragment>
 	)
 }

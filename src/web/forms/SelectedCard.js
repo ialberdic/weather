@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SelectedCard(props) {
 
-  const { isFirstLoad, params, selectCard, reloadCards, isMoveCards } = props;
+  const { params, selectCard, isMoveCards } = props;
   let { daysWeather } = props;
 
   const filterDays = params => {
@@ -70,11 +70,9 @@ export default function SelectedCard(props) {
 			});
 		} else if (params.day === 'previous' && isMoveCards) {
       daysWeather = [...daysWeather].reverse();
-      console.log(daysWeather, ' ARR DAYS WEATHER')
-      dayOne = [...daysWeather].reverse().find(t => t.show === true).dateNotTime
-      console.log("Move previous and ", dayOne)
+      dayOne = daysWeather.find(t => t.show === true).dateNotTime
 			daysWeather.forEach((element) => {
-				if (element.dateNotTime > dayOne) { return element.show = false; }
+				if (element.dateNotTime >= dayOne) { return element.show = false; }
 				element.show = i < 24 ? true : false;
 				i += 1;
       });
@@ -82,20 +80,7 @@ export default function SelectedCard(props) {
 		}
 	}
 
-  if (!isFirstLoad) {
-			daysWeather.forEach((element, index) => {
-				element.dateNotTime = element.date.split(' ')[0];
-				if (index < 16) {
-					element.show = true;
-					element.selected = false;
-				} else {
-					element.show = false;
-					element.selected = false;
-				}
-			})
-  } else {
-    filterDays(params);
-  }
+  filterDays(params);
 
   const result = Array.from(new Set(daysWeather.map(x => x.dateNotTime)))
     .map(item => {
@@ -107,7 +92,7 @@ export default function SelectedCard(props) {
       }
     });
 
-  if (reloadCards || isMoveCards) { arrCards = Object.assign([], result) };
+   arrCards = Object.assign([], result);
 
   const classes = useStyles();
 
