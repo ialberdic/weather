@@ -1,6 +1,6 @@
 ## Weather app
 
-A Weather app to know the next 5 days weather in a specific location
+A Weather app to know the next 6 weather days in a specific location
 
 ## Run project locally without docker
 
@@ -18,17 +18,18 @@ A Weather app to know the next 5 days weather in a specific location
 ## Still to finish if this app were LIVE (production)
 
 1. Wrap rows in a button to get on hover and clicking easily
-1. Create constatnt for endpoints in .env file. Add Docker? ...Likely
-2. Some tests to get a good coverage
+2. Get first card selected by default...no time to do it :(
+2. Create constatnt for endpoints in .env file. Add Docker? ...Likely
+3. Some tests to get a good coverage
 4. To create a utils file to keep segments constants just to be cleaner, in the end we should trust the details coming from the API call. However, details change and it is not a good practice code like (< 24); which means 3 days, 8 segments by day.
 
-4. **THE MOST IMPORTANT**
+5. **THE MOST IMPORTANT**
 
 A couple of bugs left to fix
 
 1. Try to find out I know you will, (In the first load (Just in the first page) clicking on cards dont get values in BarChart updated. 
    It is easy to fix :)
-2. Last page show 2 cards, it should not. A fix would be to control how many days left to show...
+2. Last page show 2 cards, it should not. A fix could be to control how many days left to show...
 
 **Just to comment, I would love to create another folder (for example "native") and start to
 code a React Native app sharing same Redux used for the Web app**
