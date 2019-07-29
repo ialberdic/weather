@@ -25,12 +25,10 @@ A Weather app to know the next 6 weather days in a specific location
 
 5. **THE MOST IMPORTANT**
 
-A couple of bugs left to fix
+One bug left to fix
 
 1. Try to find out I know you will, (In the first load (Just in the first page) clicking on cards dont get values in BarChart updated. 
    It is easy to fix :)
-
-2. Clicking in arrow function back, code goes too further...I will have a look later
 
 
 **Just to comment, I would love to create another folder (for example "native") and start to
