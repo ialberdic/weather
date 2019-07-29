@@ -29,7 +29,8 @@ A couple of bugs left to fix
 
 1. Try to find out I know you will, (In the first load (Just in the first page) clicking on cards dont get values in BarChart updated. 
    It is easy to fix :)
-2. Last page show 2 cards, it should not. A fix could be to control how many days left to show...
+2. Last page show 2 cards, it should not. It is one of my first experience with React Hooks and I realised it causing multiple rendering and moving card twice after clicking the first right arow.
+I should have developed with classes. I was very ambitious, with no time to investigate further :(
 
 **Just to comment, I would love to create another folder (for example "native") and start to
 code a React Native app sharing same Redux used for the Web app**
