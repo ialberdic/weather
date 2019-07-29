@@ -15,16 +15,19 @@ const Weather = (props) => {
 	const { arrWeather, reFetch, loading } = props;
 
 	const addDateWithoutTime = () => {
-		arrWeather.forEach((element, index) => {
-			element.dateNotTime = element.date.split(' ')[0];
-			if (index < 16) {
-				element.show = true;
-				element.selected = false;
-			} else {
-				element.show = false;
-				element.selected = false;
-			}
-		})
+		if (!isFirstLoad) {
+			arrWeather.forEach((element, index) => {
+				element.dateNotTime = element.date.split(' ')[0];
+				if (index < 16) {
+					element.show = true;
+					element.selected = false;
+				} else {
+					element.show = false;
+					element.selected = false;
+				}
+			});
+			return arrWeather;
+		} 		
 
 		return arrWeather;
 	};
@@ -37,29 +40,8 @@ const Weather = (props) => {
 		setDaysWeather(addDateWithoutTime())
 	});
 
-	const filterDays = params => {
-		let i = 0;
-		let dayOne;
-		if (params.day === 'next' && isMoveCards) {
-			dayOne = arrWeather.find(t => t.show === true).dateNotTime;
-			arrWeather.forEach((element) => {
-				if (element.dateNotTime <= dayOne) { return element.show = false; }
-				element.show = i < 24 ? true : false;
-				i += 1;
-			});
-		} else if (params.day === 'previous' && isMoveCards) {
-			const arrReverse = [...arrWeather].reverse();
-			dayOne = [...arrWeather].reverse().find(t => t.show === true).dateNotTime
-			arrReverse.forEach((element) => {
-				if (element.dateNotTime > dayOne) { return element.show = false; }
-				element.show = i < 24 ? true : false;
-				i += 1;
-			});
-		}
-	}
-
 	const fnExec = () => {
-		return !isFirstLoad ? addDateWithoutTime() : filterDays(filterParams);
+		return !isFirstLoad ? addDateWithoutTime(): null;
 	}
 
 	const [daysWeather, setDaysWeather] = React.useState(fnExec());
@@ -141,6 +123,8 @@ const Weather = (props) => {
 					</Grid>
 					<Grid container justify={"center"} display="flex" direction="row">
 						<SelectedCard
+							isFirstLoad={isFirstLoad}
+							params={filterParams}
 							isMoveCards={isMoveCards}
 							reloadCards={reloadCards}
 							selectCard={selectCard}

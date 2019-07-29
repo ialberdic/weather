@@ -55,7 +55,45 @@ const useStyles = makeStyles(theme => ({
 
 export default function SelectedCard(props) {
 
-  const { daysWeather, selectCard, reloadCards, isMoveCards } = props;
+  const { isFirstLoad, params, selectCard, reloadCards, isMoveCards } = props;
+  let { daysWeather } = props;
+
+  const filterDays = params => {
+		let i = 0;
+		let dayOne;
+		if (params.day === 'next' && isMoveCards) {
+			dayOne = daysWeather.find(t => t.show === true).dateNotTime;
+			daysWeather.forEach((element) => {
+				if (element.dateNotTime <= dayOne) { return element.show = false; }
+				element.show = i < 24 ? true : false;
+				i += 1;
+			});
+		} else if (params.day === 'previous' && isMoveCards) {
+			daysWeather = [...daysWeather].reverse();
+			dayOne = [...daysWeather].reverse().find(t => t.show === true).dateNotTime
+			daysWeather.forEach((element) => {
+				if (element.dateNotTime > dayOne) { return element.show = false; }
+				element.show = i < 24 ? true : false;
+				i += 1;
+      });
+      daysWeather = [...daysWeather].reverse();
+		}
+	}
+
+  if (!isFirstLoad) {
+			daysWeather.forEach((element, index) => {
+				element.dateNotTime = element.date.split(' ')[0];
+				if (index < 16) {
+					element.show = true;
+					element.selected = false;
+				} else {
+					element.show = false;
+					element.selected = false;
+				}
+			})
+  } else {
+    filterDays(params);
+  }
 
   const result = Array.from(new Set(daysWeather.map(x => x.dateNotTime)))
     .map(item => {
