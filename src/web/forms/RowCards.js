@@ -47,7 +47,7 @@ export default function RowCards(props) {
             </Grid>
             <Grid item xs={6} sm={4}>
                 <div className={classes.paper}>
-                    {pageSize >= 0 && pageSize < 2 ?
+                    {pageSize >= 0 && pageSize < 3 ?
                         <svg width="100" height="100">
                             <ArrowRight onClick={() => displayRowsAndCards('next')} />
                         </svg>

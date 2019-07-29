@@ -69,8 +69,10 @@ export default function SelectedCard(props) {
 				i += 1;
 			});
 		} else if (params.day === 'previous' && isMoveCards) {
-			daysWeather = [...daysWeather].reverse();
-			dayOne = [...daysWeather].reverse().find(t => t.show === true).dateNotTime
+      daysWeather = [...daysWeather].reverse();
+      console.log(daysWeather, ' ARR DAYS WEATHER')
+      dayOne = [...daysWeather].reverse().find(t => t.show === true).dateNotTime
+      console.log("Move previous and ", dayOne)
 			daysWeather.forEach((element) => {
 				if (element.dateNotTime > dayOne) { return element.show = false; }
 				element.show = i < 24 ? true : false;
