@@ -26,7 +26,9 @@ A Weather app to know the next 5 days weather in a specific location
 
 A couple of bugs left to fix
 
-1. Try to find out I know you will, (In the first load (first page) clicking on cards dont get values in BarChart updated. It is easy to fix :)
+1. Try to find out I know you will, (In the first load (Just in the first page) clicking on cards dont get values in BarChart updated. 
+   It is easy to fix :)
+2. Last page show 2 cards, it should not. A fix would be to control how many days left to show...
 
 **Just to comment, I would love to create another folder (for example "native") and start to
 code a React Native app sharing same Redux used for the Web app**

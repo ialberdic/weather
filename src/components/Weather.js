@@ -17,7 +17,7 @@ const Weather = (props) => {
 	const addDateWithoutTime = () => {
 		arrWeather.forEach((element, index) => {
 			element.dateNotTime = element.date.split(' ')[0];
-			if (index < 24) {
+			if (index < 16) {
 				element.show = true;
 				element.selected = false;
 			} else {
@@ -64,12 +64,6 @@ const Weather = (props) => {
 
 	const [daysWeather, setDaysWeather] = React.useState(fnExec());
 
-	const setValuesAndRender = () => {
-		setTrigger(!trigger);
-		setIsMoveCards(false);
-		setReloadCards(false);
-	}
-
 	const handleChange = event => {
 		setReloadCards(true);
 		let value = event.target.value;
@@ -81,7 +75,9 @@ const Weather = (props) => {
 	const moveCards = params => {
 		isFirstLoad = true;
 		filterParams = params;
-		setValuesAndRender();
+		setTrigger(!trigger);
+		setIsMoveCards(true);
+		setReloadCards(true);
 	}
 
 	const [trigger, setTrigger] = React.useState(false);
@@ -98,7 +94,9 @@ const Weather = (props) => {
 			return card.date === element.dateNotTime ? element.selected = true : null;
 		});
 		const arrSegments = Object.assign([], daysWeather);
-		setValuesAndRender();
+		setTrigger(!trigger);
+		setIsMoveCards(false);
+		setReloadCards(false);
 		setAllSegments(arrSegments);
 
 	}
