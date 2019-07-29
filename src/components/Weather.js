@@ -14,22 +14,6 @@ const Weather = (props) => {
 
 	const { arrWeather, reFetch, loading } = props;
 
-/* 	const init = () => {
-		if (!isFirstLoad) {
-			daysWeather.forEach((element, index) => {
-				element.dateNotTime = element.date.split(' ')[0];
-				if (index < 16) {
-					element.show = true;
-					element.selected = false;
-				} else {
-					element.show = false;
-					element.selected = false;
-				}
-			})
-		}
-	} */
-
-
 	const addDateWithoutTime = () => {
 		if (!isFirstLoad) {
 			arrWeather.forEach((element, index) => {

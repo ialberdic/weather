@@ -59,26 +59,26 @@ export default function SelectedCard(props) {
   let { daysWeather } = props;
 
   const filterDays = params => {
-		let i = 0;
-		let dayOne;
-		if (params.day === 'next' && isMoveCards) {
-			dayOne = daysWeather.find(t => t.show === true).dateNotTime;
-			daysWeather.forEach((element) => {
-				if (element.dateNotTime <= dayOne) { return element.show = false; }
-				element.show = i < 24 ? true : false;
-				i += 1;
-			});
-		} else if (params.day === 'previous' && isMoveCards) {
+    let i = 0;
+    let dayOne;
+    if (params.day === 'next' && isMoveCards) {
+      dayOne = daysWeather.find(t => t.show === true).dateNotTime;
+      daysWeather.forEach((element) => {
+        if (element.dateNotTime <= dayOne) { return element.show = false; }
+        element.show = i < 24 ? true : false;
+        i += 1;
+      });
+    } else if (params.day === 'previous' && isMoveCards) {
       daysWeather = [...daysWeather].reverse();
       dayOne = daysWeather.find(t => t.show === true).dateNotTime
-			daysWeather.forEach((element) => {
-				if (element.dateNotTime >= dayOne) { return element.show = false; }
-				element.show = i < 24 ? true : false;
-				i += 1;
+      daysWeather.forEach((element) => {
+        if (element.dateNotTime >= dayOne) { return element.show = false; }
+        element.show = i < 24 ? true : false;
+        i += 1;
       });
       daysWeather = [...daysWeather].reverse();
-		}
-	}
+    }
+  }
 
   filterDays(params);
 
@@ -92,7 +92,7 @@ export default function SelectedCard(props) {
       }
     });
 
-   arrCards = Object.assign([], result);
+  arrCards = Object.assign([], result);
 
   const classes = useStyles();
 
